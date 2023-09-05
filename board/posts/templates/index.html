@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>제목</th>
+                <th>상세보기</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for post in posts%}
+                <tr>
+                    <td>{{post.title}}</td>
+                    <td><a href="{% url 'posts:detail' id=post.id %}">detail</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% load bootstrap5 %}
+<div class="card-footer">
+    {% if user.is_authenticated %}
+    <form action="{% url 'posts:comment_create' post_id=post.id %}" method="POST">
+        {% csrf_token %}
+        {% bootstrap_form comment_form %}
+        <button type="submit" class="btn btn-outline-primary" style="float:right">
+            <i class="fa-solid fa-arrow-right"></i>
+        </button>
+    </form>
+    <br>
+    <hr>
+    {% endif %}
+    {% for comment in post.comment_set.all %}
+        <p>
+            <img src="{{comment.user.profile_image.url}}" alt="" class="rounded-circle" width="25px">
+            <a href="{% url 'accounts:profile' username=comment.user %}" class="text-reset text-decoration-none">
+                {{comment.user}}</a>
+            : {{comment.content}} {{comment.created_at|timesince}} ago
+        </p>
+    {% endfor %}
+</div>

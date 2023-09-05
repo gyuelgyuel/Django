@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container text-center">
+    <div class="row">
+      <div class="col">
+        <p style="text-align:left; font-size:50px;">{{question.content}}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="card" style="width: 31rem;">
+          <img src="{{question.option1_image.url}}" alt="" class="card-img-top" style="width:495px;height:495px;align-items:center">
+          <!-- <img src="..." class="card-img-top" alt="..."> -->
+          <div class="card-body">
+            <h5 class="card-title">{{option1_per}} %</h5>
+            <p class="card-text">{{question.option1}}</p>
+            <a href="{% url 'QnA:next_question' q_id=q_id user_id=user.id bool=1 %}" class="btn btn-primary">선택</a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card" style="width: 31rem;">
+          <img src="{{question.option2_image.url}}" alt="" class="card-img-top" style="width:495px;height:495px;">
+          <!-- <img src="..." class="card-img-top" alt="..."> -->
+          <div class="card-body">
+            <h5 class="card-title">{{option2_per}} %</h5>
+            <p class="card-text">{{question.option2}}</p>
+            <a href="{% url 'QnA:next_question' q_id=q_id user_id=user.id bool=0 %}" class="btn btn-primary">선택</a>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+{% endblock %}
